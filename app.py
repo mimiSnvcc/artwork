@@ -18,11 +18,11 @@ if query:
     ids = search_artworks(query)
     for object_id in ids:
         data = get_artwork_details(object_id)
-        st.subheader(data["title"])
+        st.subheader(data.get("title", "No Title"))
         image_url = data.get("primaryImageSmall")
         if image_url:
             st.image(image_url, width=300)
         else:
             st.write("No image available")
-        st.write(f"Artist: {data.get('artistDisplayName')}")
-        st.write(f"Year: {data.get('objectDate')}")
+        st.write(f"Artist: {data.get('artistDisplayName', 'Unknown')}")
+        st.write(f"Year: {data.get('objectDate', 'Unknown')}")
